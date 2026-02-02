@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dexscreener Colorizer | 取引を瞬時に視認</title>
+    <meta name="description" content="Dexscreenerの取引履歴を金額ごとに自動色分け。クジラの動きを一瞬で見分ける無料ツール。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon">💎</span>
+                <span class="logo-text">Dexscreener Colorizer</span>
+            </div>
+            <nav>
+                <a href="#how-to-use" class="nav-link">使いかた</a>
+                <a href="#security" class="nav-link">安全性</a>
+                <a href="#warning" class="nav-link">注意事項</a>
+                <a href="https://github.com/agenda23/Dexscreener-Colorizer" target="_blank" class="github-link">
+                    <svg height="24" width="24" viewBox="0 0 16 16">
+                        <path fill="currentColor"
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                        </path>
+                    </svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-badge">完全無料 ・ 登録不要 ・ 即利用可能</div>
+                <h1 class="hero-title">Dexscreenerの取引を<br><span class="text-gradient">色鮮やかに。</span></h1>
+                <p class="hero-description">
+                    複雑な取引履歴を、金額に基づいた5つのランクで自動色分け。<br>
+                    クジラの買いを逃さず、市場の勢いを直感的に把握できます。
+                </p>
+
+                <div class="cta-card">
+                    <p class="cta-hint">👇 このボタンを<strong>ブックマークバー</strong>にドラッグして離してください</p>
+                    <a id="bookmark-btn" class="bookmark-btn"
+                        href='javascript:(function(){const styles={buy:{whale:{bg:"#15803d",text:"#ffffff"},dolphin:{bg:"#22c55e",text:"#ffffff"},shrimp:{bg:"#86efac",text:"#166534"},fish:{bg:"#dcfce7",text:"#15803d"},plankton:{bg:"#f0fdf4",text:"#166534"}},sell:{whale:{bg:"#7f1d1d",text:"#ffffff"},dolphin:{bg:"#ef4444",text:"#ffffff"},shrimp:{bg:"#fca5a5",text:"#991b1b"},fish:{bg:"#fee2e2",text:"#b91c1c"},plankton:{bg:"#fef2f2",text:"#991b1b"}}};const applyColorsToRow=(row)=>{const typeDiv=row.querySelector(".custom-5sgvd2");const usdDiv=row.querySelector(".custom-ujwk84");if(!typeDiv||!usdDiv)return;const isBuy=typeDiv.textContent.trim().toLowerCase()==="buy";const usdAmount=parseFloat(usdDiv.textContent.replace(/[^0-9.]/g,""))||0;let rank="plankton";if(usdAmount>=10000){rank="whale"}else if(usdAmount>=1000){rank="dolphin"}else if(usdAmount>=250){rank="shrimp"}else if(usdAmount>=10){rank="fish"}else{rank="plankton"}const side=isBuy?"buy":"sell";const config=styles[side][rank];row.style.setProperty("background-color",config.bg,"important");const textElements=row.querySelectorAll("div, span, td, a");textElements.forEach(el=>{el.style.setProperty("color",config.text,"important");if(el.tagName==="TD"){el.style.setProperty("--ds-log-stream-volume-usd-bg","transparent","important")}})};const observer=new MutationObserver((mutations)=>{mutations.forEach((mutation)=>{if(mutation.type==="childList"){mutation.addedNodes.forEach(node=>{if(node.nodeType===1){const rows=node.tagName==="TR"?[node]:node.querySelectorAll("tr.custom-1jrcg3g");rows.forEach(applyColorsToRow)}})}else if(mutation.type==="characterData"||mutation.type==="subtree"){let target=mutation.target.parentElement;while(target&&target.tagName!=="TR"){target=target.parentElement}if(target&&target.classList.contains("custom-1jrcg3g")){applyColorsToRow(target)}}})});const targetNode=document.querySelector("tbody[data-testid=\"virtuoso-item-list\"]");if(targetNode){document.querySelectorAll("tr.custom-1jrcg3g").forEach(applyColorsToRow);observer.observe(targetNode,{childList:true,subtree:true,characterData:true});alert("色分けツールを起動しました！");}else{alert("テーブルが見つかりません。Transactionsタブを開いているか確認してください。");}})();'>
+                        <span class="btn-glow"></span>
+                        <span class="btn-text">Dex色分けツール</span>
+                    </a>
+                    <div class="drag-guide">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bounce-y">
+                            <path d="M12 5v14M5 12l7 7 7-7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="preview" class="preview-section">
+            <div class="container">
+                <h2 class="section-title">Before & After</h2>
+                <div class="preview-comparison">
+                    <img src="dexscreener_colorizer_preview.png" alt="Colorizer Preview" class="preview-img">
+                </div>
+
+                <div class="rank-legend">
+                    <div class="legend-header">
+                        <h3>ランク別カラー設定</h3>
+                        <p>金額(USD)に応じて、背景色と文字色が自動で切り替わります</p>
+                    </div>
+                    <div class="legend-columns">
+                        <div class="legend-column">
+                            <h4>Buy (買い)</h4>
+                            <div class="legend-grid">
+                                <div class="legend-item whale-buy"><span class="rank-dot"></span> Whale ($10k+)</div>
+                                <div class="legend-item dolphin-buy"><span class="rank-dot"></span> Dolphin ($1k+)</div>
+                                <div class="legend-item shrimp-buy"><span class="rank-dot"></span> Shrimp ($250+)</div>
+                                <div class="legend-item fish-buy"><span class="rank-dot"></span> Fish ($10+)</div>
+                                <div class="legend-item plankton-buy"><span class="rank-dot"></span> Plankton</div>
+                            </div>
+                        </div>
+                        <div class="legend-column">
+                            <h4>Sell (売り)</h4>
+                            <div class="legend-grid">
+                                <div class="legend-item whale-sell"><span class="rank-dot"></span> Whale ($10k+)</div>
+                                <div class="legend-item dolphin-sell"><span class="rank-dot"></span> Dolphin ($1k+)
+                                </div>
+                                <div class="legend-item shrimp-sell"><span class="rank-dot"></span> Shrimp ($250+)</div>
+                                <div class="legend-item fish-sell"><span class="rank-dot"></span> Fish ($10+)</div>
+                                <div class="legend-item plankton-sell"><span class="rank-dot"></span> Plankton</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-to-use" class="features">
+            <div class="container">
+                <h2 class="section-title">わずか3ステップで導入</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-number">01</div>
+                        <h3>ドラッグする</h3>
+                        <p>上の緑色のボタンを、ブラウザのブックマークバーにドラッグ＆ドロップします。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-number">02</div>
+                        <h3>Dexで開く</h3>
+                        <p>Dexscreenerでトークンを表示し、<strong>Transactions</strong>タブを選択します。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-number">03</div>
+                        <h3>クリック！</h3>
+                        <p>保存したブックマークをクリックすれば、即座に色分けが始まります。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="security" class="security-section">
+            <div class="container glass">
+                <h2 class="section-title">安心・安全へのこだわり</h2>
+                <div class="security-content">
+                    <div class="security-item">
+                        <div class="security-icon">🛡️</div>
+                        <h4>100% クライアントサイド</h4>
+                        <p>計算はすべてあなたのブラウザ上で行われます。サーバーへの送信は一切ありません。</p>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-icon">🔒</div>
+                        <h4>API不要・権限不要</h4>
+                        <p>APIキーの入力や複雑な設定は不要。既存の取引ログを読み取るだけです。</p>
+                    </div>
+                    <div class="security-item">
+                        <div class="security-icon">⚡</div>
+                        <h4>超軽量・高速</h4>
+                        <p>純粋なJavaScriptで作られたシンプルなコード。ブラウザの動作を重くしません。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="warning" class="warning-section">
+            <div class="container">
+                <h2 class="section-title">⚠️ ご利用にあたっての注意事項</h2>
+                <div class="warning-grid">
+                    <div class="warning-card">
+                        <h4>登録・環境</h4>
+                        <ul>
+                            <li><strong>登録方法:</strong> ブックマークバーにドラッグして登録してください。</li>
+                            <li><strong>推奨環境:</strong> PC版 Google Chrome（Edge, Safari等も可）。スマホアプリ非対応。</li>
+                        </ul>
+                    </div>
+                    <div class="warning-card">
+                        <h4>使い方・仕様</h4>
+                        <ul>
+                            <li><strong>Transactionsタブ:</strong> 必ず履歴タブを開いた状態で実行してください。</li>
+                            <li><strong>アイコンとの違い:</strong> アイコン（過去実績）ではなく、<strong>現在の取引金額（USD）</strong>で色分けします。</li>
+                            <li><strong>リセット:</strong> リロードやページ移動でリセットされます。再度クリックして起動してください。</li>
+                        </ul>
+                    </div>
+                    <div class="warning-card disclaimer">
+                        <h4>免責事項・サポート</h4>
+                        <p>本ツールは視認性向上のための補助ツールであり、利益を保証しません。利用による損失の責任は負いかねます。不要時はブックマークを右クリックで削除してください。</p>
+                        <p
+                            style="margin-top: 15px; border-top: 1px solid rgba(239, 68, 68, 0.1); padding-top: 15px; font-size: 0.85rem;">
+                            ※ 本ツールはDexScreenerの仕様に大きく依存しています。アップデート等で使用できなくなる可能性があります。動作に問題がある場合は<a
+                                href="https://github.com/agenda23/Dexscreener-Colorizer/issues" target="_blank"
+                                style="color: inherit; text-decoration: underline;">GitHubのIssue</a>に記載してください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 agenda23. Created for Traders.</p>
+            <div class="footer-links">
+                <a href="https://github.com/agenda23/Dexscreener-Colorizer" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Prevention for accidental click on bookmark button
+        document.getElementById('bookmark-btn').addEventListener('click', function (e) {
+            if (this.protocol !== 'javascript:') {
+                // Should not happen, but safety first
+            } else {
+                // Basic check to see if we are on the tool page vs actual Dex
+                if (window.location.hostname !== 'dexscreener.com') {
+                    e.preventDefault();
+                    alert('このボタンは「ブックマークバーにドラッグ」して使います。\n\n登録後はDexscreenerのサイト上でブックマークをクリックしてください。');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
